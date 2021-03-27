@@ -1,0 +1,79 @@
+/*Checkbox inside Select Option start*/
+#Select_checkBox{
+    display:block
+}
+
+.dropdown-menu > .active > a {
+    background-color: transparent;
+    background-image: none;
+}
+    .dropdown-menu > .active > a :hover {
+        background-color: #d0e9ff;
+    }
+
+
+
+    .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+        background-color: #d0e9ff;
+        background-image: none;
+    }
+    .dropdown-menu > .active > .dropdown-menu > .active > a:hover {
+        background-color: #d0e9ff;
+        background-image: none;
+    }
+
+.multiselect-container > li > a {
+    color: grey ;
+}
+.multiselect-container > li {
+    padding: 3px 0px 3px 15px;
+    font-size: 17px;
+}
+    .multiselect-container > li:hover {
+        background-color: #d0e9ff;
+    }
+.multiselect-container > li > a > label{
+    padding:0px;
+}
+.dropdown-menu > li > a:hover {
+    background-color: #d0e9ff;
+    background-image: none;
+}
+    /*Checkbox inside Select Option end*/
+#addDepart:hover {
+    background-color: #64d15dab;
+}
+#addDepart {
+    font-size: 13px;
+    padding: 8px 6px;
+  
+}
+#deleteDepart:hover {
+    background-color: #ff5b4cad;
+}
+
+#deleteDepart {
+    font-size: 13px;
+    padding: 8px 6px;
+}
+
+#selectpicker {
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 8rem;
+    padding: .5rem 0;
+    font-size: .85rem;
+    color: #858796;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+    float: revert;
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 60%;
+}

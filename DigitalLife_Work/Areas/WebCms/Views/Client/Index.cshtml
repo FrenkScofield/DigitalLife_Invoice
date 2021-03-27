@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DigitalLife_Work.Models.BLL.Client>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/WebCms/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 my-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-4">
+                Clients
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between my-3">
+                    <a href="#" data-action="Department" class="btn btn-outline-info confirmqueue"><i class="fas fa-sort"></i> Sirala</a>
+                    <a asp-action="Create" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i> Add Client</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-shorting">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Surname
+                                </th>
+                                <th><span style="color:Highlight">Edit</span> - <span style="color:red">Delete</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr data-id="@item.Id">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Surname)
+
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn text-danger" onclick="return confirm('Are you sure you want to delete it?')"><i class="fas fa-fw fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

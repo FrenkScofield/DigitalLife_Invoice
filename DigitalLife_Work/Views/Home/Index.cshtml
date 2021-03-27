@@ -1,0 +1,135 @@
+﻿@model DigitalLife_Work.Models.VM.ProjectClientViewModelcs
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12 my-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-4">
+                Invoices
+                <a asp-area="WebCms" asp-controller="AdminHome" asp-action="Index" type="button" class="btn btn-outline-primary" style="float:right;">Admin panel</a>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between my-3">
+                    <div class="form-group">
+                        <label class="control-label">Project Name </label>
+                        <select name="projectsid" id="project" class="form-control">
+                            <option value="0">Project choose</option>
+                            @foreach (var item in Model.Projects)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Client Name </label>
+                        <select name="clientid" id="client" class="form-control">
+                            <option value="0">Clients choose</option>
+                            @foreach (var item in Model.Clients)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:200px;">
+                        <label asp-for="@Model.Invoice.DateTime" class="control-label">Date</label>
+                        <input type="date" id="datepicker" asp-for="@Model.Invoice.DateTime" value="@DateTime.Now" min="2010-01-01" max="2030-12-31" class="form-control" required />
+                        <span class="text-danger"></span>
+                    </div>
+                    <a asp-controller="Home" asp-action="Create" style="height: 38px;" class="btn btn-outline-dark"><i class="fas fa-fw fa-plus"></i>Add Invoice</a>
+                </div>
+                @{ 
+                    var totalAmount = 0;
+                    var netAmount = 0;
+                    var taxAmount = 0;
+                }
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-shorting" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Num</th>
+                                <th>Date</th>
+                                <th>Cilient Name</th>
+                                <th>Net Amount</th>
+                                <th>Tax Amount</th>
+                                <th>Total Amount</th>
+                                <th>Project Name</th>
+                                <th>Description</th>
+                                <th>P.Status</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Invoices)
+                            {
+                                <tr data-id="@item.Id">
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Client.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NetAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TaxAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Project.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Note)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn text-primary"><i class="fas fa-fw fa-pencil-alt"></i></a>
+
+                                    </td>
+                                </tr>
+                                totalAmount += item.TotalAmount;
+                                taxAmount += item.TaxAmount;
+                                netAmount += item.NetAmount;
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label class="control-label">Net Amounts Sum</label>
+                        <input disabled style="width:300px;" value="@netAmount" type="text" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="control-label">Tax Amounts Sum</label>
+                        <input disabled style="width:300px;" value="@taxAmount" type="text" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-4">
+                        <label class="control-label">Total Amounts Sum</label>
+                        <input disabled style="width:300px;" value="@totalAmount" type="text" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/main.js"></script>
+ 
+}
